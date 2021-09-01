@@ -42,9 +42,9 @@ class CompanyController extends Controller
             'logo' =>'dimensions:min_width=100,min_height=100',
         ]);
         $company = new Company();
-        $company->name = $request->input('name');
-        $company->email = $request->input('email');
-        $company->website = $request->input('website');
+        $company->name = $request->input('name')??'';
+        $company->email = $request->input('email')??'';
+        $company->website = $request->input('website')??'';
         if ($request->hasfile('logo')) {
             $destination_path = 'public/logo';
             $file = $request->file('logo');
@@ -52,7 +52,7 @@ class CompanyController extends Controller
             $request->file('logo')->storeAs($destination_path ,$image_name);
             $company->logo = $image_name; 
         } else {
-            echo "No file selected";
+            $company->logo = ''; 
         }
         $query = $company->save();
         if ($query) {
@@ -98,9 +98,9 @@ class CompanyController extends Controller
             'name' => 'required',
             'logo' =>'dimensions:min_width=100,min_height=100',
         ]);
-        $company->name = $request->input('name');
-        $company->email = $request->input('email');
-        $company->website = $request->input('website');
+        $company->name = $request->input('name')??'';
+        $company->email = $request->input('email')??'';
+        $company->website = $request->input('website')??'';
         if ($request->hasfile('logo')) {
             $destination_path = 'public/logo';
             $file = $request->file('logo');
@@ -108,7 +108,7 @@ class CompanyController extends Controller
             $request->file('logo')->storeAs($destination_path ,$image_name);
             $company->logo = $image_name; 
         } else {
-            echo  "No file selected";
+            $company->logo = ''; 
         }
         $result = $company->update();
         if ($result) {

@@ -12,7 +12,7 @@
     @endif   method="post" enctype="multipart/form-data" id="addUserForm" >
         @csrf
         @if (!empty($data))
-        @method('PUT')
+            @method('PUT')
         @endif
         <input type ="hidden"  name ="id"  id="adminUserId" value="{{$data['id'] ?? ''}}">
         <div class="mb-3">
@@ -46,9 +46,9 @@
         <div class="mb-3">
             <label for="exampleInputAddress" class="form-label">Select Company</label>
             <select name="company" class="form-control">
-            @foreach($companyLists as $company)
-                <option value="{{ $company->id }}"  {{ $data->company_id == $company->id ? 'selected' : ''}}>{{ $company->name }}</option>
-            @endforeach    
+                @foreach($companyLists as $company)
+                    <option value="{{ $company->id }}" >{{ $company->name }}</option>
+                @endforeach    
             </select>
             @error('company')
             <span style="color:red">{{$message}}</span>

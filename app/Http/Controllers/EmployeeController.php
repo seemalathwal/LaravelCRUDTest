@@ -43,14 +43,14 @@ class EmployeeController extends Controller
             'Lname' => 'required',
             'email' => 'required',
             'company' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|digits:10',
         ]);
         $emp = new Employee();
-        $emp->firstName = $request->input('Fname');
-        $emp->lastName = $request->input('Lname');
-        $emp->email = $request->input('email');
-        $emp->company_id = $request->input('company');
-        $emp->phone = $request->input('phone');
+        $emp->firstName = $request->input('Fname')??'';
+        $emp->lastName = $request->input('Lname')??'';
+        $emp->email = $request->input('email')??'';
+        $emp->company_id = $request->input('company')??'';
+        $emp->phone = $request->input('phone')??'';
         $query = $emp->save();
         if ($query) {
             return redirect('/EmployeeResources')->with('success','Employee Added successfully');
@@ -96,13 +96,13 @@ class EmployeeController extends Controller
             'Lname' => 'required',
             'email' => 'required',
             'company' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|digits:10',
         ]);
-        $emp->firstName = $request->input('Fname');
-        $emp->lastName = $request->input('Lname');
-        $emp->email = $request->input('email');
-        $emp->company_id = $request->input('company');
-        $emp->phone = $request->input('phone');
+        $emp->firstName = $request->input('Fname')??'';
+        $emp->lastName = $request->input('Lname')??'';
+        $emp->email = $request->input('email')??'';
+        $emp->company_id = $request->input('company')??'';
+        $emp->phone = $request->input('phone')??'';
         $query = $emp->update();
         if ($query) {
             return redirect('/EmployeeResources')->with('success','Employee Updated successfully');
